@@ -11,7 +11,7 @@ It includes the following action and feed:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | package | appId, appSecret  | Work with the Push Service |
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, tagNames, gcmPayload, gcmSound, gcmCollapseKey, gcmDelayWhileIdle, gcmPriority, gcmTimeToLive, gcmSync, gcmVisibility, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices |
-| `/whisk.system/pushnotifications/webhook` | feed | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service |
+| `/whisk.system/pushnotifications/webhook` | feed | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) and delivery status (Notification Sent and Notification Failure) on the Push service |
 Creating a package binding with the `appId` and `appSecret` values is suggested. This way, you don't need to specify these credentials every time you invoke the actions in the package.
 
 ### Creating a Push package binding
@@ -117,7 +117,7 @@ The parameters are as follows:
 
 - `appId:` The Bluemix app GUID.
 - `appSecret:` The Bluemix push notification service appSecret.
-- `events:` Supported events are `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`.To get notified for all events use the wildcard character `*`.
+- `events:` Supported events are `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`, `onNotificationSent`, `onNotificationFailure`.To get notified for all events use the wildcard character `*`.
 
 The following is an example of creating a trigger that will be fired each time there is a new device registered with the Push Notifications service application.
 
